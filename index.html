@@ -1,0 +1,1212 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ลอยกระทงออนไลน์ - ประเพณีไทย</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-night-top: #090d26;
+      --bg-night-mid: #161f4a;
+      --bg-night-low: #262c64;
+      --river-top: #102552;
+      --river-mid: #0b1c40;
+      --river-deep: #061026;
+      --surface: rgba(20, 28, 66, 0.88);
+      --surface-card: #192352;
+      --border: rgba(255, 214, 107, 0.28);
+      --ink: #fdf8eb;
+      --muted: #b8c2e0;
+      --gold: #ffcf54;
+      --gold-deep: #f29f05;
+      --gold-glow: rgba(255, 207, 84, 0.45);
+      --accent: #ff7b39;
+      --danger: #ff6b6b;
+      --danger-bg: rgba(255, 107, 107, 0.14);
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --shadow-3d: 0 14px 32px rgba(4, 8, 24, 0.55), inset 0 2px 2px rgba(255, 255, 255, 0.18);
+      --font-head: 'Kanit', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-body: 'Sarabun', 'Kanit', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background: linear-gradient(180deg, var(--bg-night-top) 0%, var(--bg-night-mid) 55%, var(--bg-night-low) 100%);
+      min-height: 100vh;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    .app-header {
+      position: relative;
+      z-index: 10;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: var(--space-4) var(--space-6);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .brand-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #fff4b8 0%, #ffcf54 55%, #e07b00 100%);
+      box-shadow: 0 6px 16px rgba(255, 196, 54, 0.45), inset 0 -4px 6px rgba(145, 65, 0, 0.35);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+      font-weight: 700;
+      color: #fff6d6;
+      text-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
+      letter-spacing: 0.01em;
+    }
+
+    .brand-subtitle {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    /* Main Layout */
+    .main-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 var(--space-6) var(--space-8);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+      align-items: start;
+    }
+
+    @media (min-width: 960px) {
+      .main-container {
+        grid-template-columns: 380px 1fr;
+      }
+    }
+
+    /* 3D Cartoon Form Panel */
+    .form-panel {
+      background: linear-gradient(165deg, rgba(35, 48, 105, 0.92) 0%, rgba(19, 27, 66, 0.95) 100%);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      box-shadow: var(--shadow-3d);
+      backdrop-filter: blur(10px);
+      position: relative;
+    }
+
+    .panel-title {
+      font-family: var(--font-head);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: var(--space-1);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .panel-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: var(--space-6);
+    }
+
+    .form-group {
+      margin-bottom: var(--space-4);
+    }
+
+    .form-label {
+      display: block;
+      font-family: var(--font-head);
+      font-weight: 500;
+      font-size: 0.95rem;
+      margin-bottom: var(--space-2);
+      color: #fff4d2;
+    }
+
+    /* Upload Dropzone */
+    .upload-zone {
+      border: 2px dashed rgba(255, 207, 84, 0.45);
+      border-radius: var(--radius-md);
+      background: rgba(11, 17, 46, 0.55);
+      padding: var(--space-4);
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.15s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 170px;
+      box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.35);
+    }
+
+    .upload-zone:hover,
+    .upload-zone.dragover {
+      border-color: var(--gold);
+      background: rgba(255, 207, 84, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .upload-zone:focus-within {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+
+    .file-input {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .upload-preview-wrap {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+      width: 100%;
+    }
+
+    .upload-preview-wrap.active {
+      display: flex;
+    }
+
+    .upload-placeholder.hidden {
+      display: none;
+    }
+
+    .preview-img-box {
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 25%, rgba(255, 236, 168, 0.35), rgba(16, 26, 68, 0.85));
+      border: 3px solid var(--gold);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45), inset 0 2px 6px rgba(255, 255, 255, 0.3);
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+    }
+
+    .preview-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .change-photo-hint {
+      font-size: 0.82rem;
+      color: var(--gold);
+      font-family: var(--font-head);
+    }
+
+    .upload-icon-3d {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto var(--space-2);
+      border-radius: 16px;
+      background: linear-gradient(145deg, #35479c, #1e2a63);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), inset 0 2px 2px rgba(255, 255, 255, 0.25);
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+    }
+
+    .upload-title {
+      font-family: var(--font-head);
+      font-size: 0.95rem;
+      color: var(--ink);
+      margin-bottom: 2px;
+    }
+
+    .upload-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    /* Text Input */
+    .text-input {
+      width: 100%;
+      padding: 12px 14px;
+      font-family: var(--font-body);
+      font-size: 0.98rem;
+      color: var(--ink);
+      background: rgba(9, 14, 38, 0.72);
+      border: 2px solid rgba(255, 214, 107, 0.3);
+      border-radius: var(--radius-sm);
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .text-input::placeholder {
+      color: rgba(184, 194, 224, 0.55);
+    }
+
+    .text-input:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(255, 207, 84, 0.22), inset 0 2px 6px rgba(0, 0, 0, 0.4);
+    }
+
+    .text-input.input-error {
+      border-color: var(--danger);
+      box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.22);
+    }
+
+    /* Validation feedback */
+    .validation-msg {
+      margin-top: var(--space-2);
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.86rem;
+      display: none;
+      align-items: center;
+      gap: var(--space-2);
+      line-height: 1.4;
+    }
+
+    .validation-msg.error {
+      display: flex;
+      background: var(--danger-bg);
+      border: 1px solid rgba(255, 107, 107, 0.5);
+      color: #ffd4d4;
+    }
+
+    /* 3D Button */
+    .btn-launch {
+      width: 100%;
+      margin-top: var(--space-2);
+      padding: 13px 20px;
+      font-family: var(--font-head);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #2b1600;
+      background: linear-gradient(180deg, #ffe27a 0%, #ffba26 55%, #f08c00 100%);
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      box-shadow: 0 6px 0 #9e5400, 0 10px 20px rgba(255, 166, 0, 0.35), inset 0 2px 1px rgba(255, 255, 255, 0.65);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+    }
+
+    .btn-launch:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+      box-shadow: 0 7px 0 #9e5400, 0 12px 24px rgba(255, 166, 0, 0.45), inset 0 2px 1px rgba(255, 255, 255, 0.75);
+    }
+
+    .btn-launch:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 #9e5400, 0 4px 10px rgba(255, 166, 0, 0.3);
+    }
+
+    .btn-launch:focus-visible {
+      outline: 2px solid #ffffff;
+      outline-offset: 3px;
+    }
+
+    /* 3D Cartoon Festival River Scene */
+    .scene-stage {
+      position: relative;
+      height: 580px;
+      border-radius: var(--radius-lg);
+      border: 2px solid var(--border);
+      box-shadow: var(--shadow-3d);
+      overflow: hidden;
+      background: linear-gradient(180deg, #070b22 0%, #141e4d 38%, #2a2c68 56%, #102552 57%, #071430 100%);
+      user-select: none;
+    }
+
+    /* Sky & Full Moon (3D Sphere look) */
+    .sky-layer {
+      position: absolute;
+      inset: 0 0 43% 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .full-moon {
+      position: absolute;
+      top: 34px;
+      right: 68px;
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #ffffff 0%, #fff5c0 45%, #ffd25a 82%, #e69d24 100%);
+      box-shadow: 0 0 40px 14px rgba(255, 217, 102, 0.42), 0 0 90px 32px rgba(255, 185, 56, 0.22), inset -10px -10px 18px rgba(217, 130, 14, 0.35);
+    }
+
+    /* Stars */
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: #fff9d6;
+      box-shadow: 0 0 8px #ffe484;
+      animation: twinkle 3.2s infinite ease-in-out alternate;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.35; transform: scale(0.85); }
+      100% { opacity: 1; transform: scale(1.15); }
+    }
+
+    /* Floating 3D Sky Lanterns (Khom Loy) */
+    .khom-loy {
+      position: absolute;
+      width: 26px;
+      height: 34px;
+      border-radius: 12px 12px 7px 7px;
+      background: radial-gradient(circle at 50% 75%, #fff7b2 0%, #ffae34 55%, #d9531e 100%);
+      box-shadow: 0 6px 16px rgba(255, 160, 40, 0.55), inset 0 3px 6px rgba(255, 255, 255, 0.45);
+      animation: floatSky 9s infinite ease-in-out alternate;
+    }
+
+    .khom-loy::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #fffbe0;
+      box-shadow: 0 0 10px 4px rgba(255, 210, 85, 0.85);
+    }
+
+    @keyframes floatSky {
+      0% { transform: translateY(0px) rotate(-3deg); }
+      100% { transform: translateY(-16px) rotate(4deg); }
+    }
+
+    /* Thai Temple & Sala Silhouette + Garland Lights */
+    .horizon-silhouette {
+      position: absolute;
+      bottom: 42.5%;
+      left: 0;
+      width: 100%;
+      height: 130px;
+      pointer-events: none;
+    }
+
+    /* Riverbank Garland Lights */
+    .garland-lights {
+      position: absolute;
+      top: 53%;
+      left: 0;
+      width: 100%;
+      height: 28px;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    /* Water Layer */
+    .river-layer {
+      position: absolute;
+      top: 56%;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(180deg, #132c63 0%, #0d214c 42%, #071330 100%);
+      overflow: hidden;
+    }
+
+    .moon-reflection {
+      position: absolute;
+      top: 6px;
+      right: 52px;
+      width: 128px;
+      height: 180px;
+      background: radial-gradient(ellipse at 50% 10%, rgba(255, 219, 112, 0.35) 0%, rgba(255, 190, 66, 0.12) 55%, transparent 80%);
+      filter: blur(3px);
+      pointer-events: none;
+    }
+
+    .water-ripple {
+      position: absolute;
+      height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, rgba(255, 224, 130, 0.28), transparent);
+      animation: shimmer 4.5s infinite ease-in-out alternate;
+      pointer-events: none;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-12px) scaleX(0.92); opacity: 0.4; }
+      100% { transform: translateX(12px) scaleX(1.08); opacity: 0.85; }
+    }
+
+    /* Empty River State */
+    .river-empty-state {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-6);
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .river-empty-state.hidden {
+      display: none;
+    }
+
+    .empty-card {
+      background: rgba(13, 22, 56, 0.78);
+      border: 1.5px solid rgba(255, 207, 84, 0.35);
+      border-radius: var(--radius-md);
+      padding: var(--space-4) var(--space-6);
+      max-width: 360px;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(6px);
+    }
+
+    .empty-title {
+      font-family: var(--font-head);
+      font-size: 1.05rem;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .empty-sub {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    /* Floating 3D Cartoon Krathong Item */
+    .krathong-lane {
+      position: absolute;
+      inset: 0;
+      z-index: 6;
+    }
+
+    .floating-krathong {
+      position:absolute;
+      top:var(--depth-start);
+      left:-150px;
+      width:136px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      animation:driftAcross cubic-bezier(.32,.05,.52,.98) infinite;
+      cursor:pointer;
+      transition:filter .2s ease;
+      will-change:left,top,rotate;
+    }
+    .krathong-content { display:flex;flex-direction:column;align-items:center;transform-origin:top center;animation:bobWater 4.6s ease-in-out infinite alternate, depthScale 48s linear infinite, depthFade 48s linear infinite;scale:var(--scale-start);opacity:var(--opacity-start);will-change:transform,scale; }
+    .krathong-visual { display:flex;flex-direction:column;align-items:center;transform:perspective(700px) rotateX(14deg);transform-style:preserve-3d;filter:drop-shadow(0 9px 8px rgba(0,0,0,.42)); }
+    @keyframes depthScale { from { scale:var(--scale-start); } to { scale:var(--scale-end); } }
+    @keyframes depthFade { from { opacity:var(--opacity-start); } to { opacity:var(--opacity-end); } }
+
+    .floating-krathong:hover {
+      z-index: 20;
+      filter: brightness(1.1);
+    }
+
+    /* 3D Cartoon Base & Pedestal around Student's Krathong Image */
+    .krathong-3d-body {
+      position: relative;
+      width: 96px;
+      height: 96px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Candle light halo */
+    .candle-glow {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 238, 138, 0.9) 0%, rgba(255, 162, 36, 0.45) 55%, transparent 75%);
+      animation: candleFlicker 1.4s infinite ease-in-out alternate;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    @keyframes candleFlicker {
+      0% { transform: translateX(-50%) scale(0.92); opacity: 0.85; }
+      100% { transform: translateX(-50%) scale(1.12); opacity: 1; }
+    }
+
+    .krathong-figure {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 28%, #fff6cf 0%, #ffd25a 58%, #d98200 100%);
+      padding: 4px;
+      box-shadow:
+        0 10px 18px rgba(0, 0, 0, 0.55),
+        0 4px 0 #7a4200,
+        inset 0 3px 5px rgba(255, 255, 255, 0.7);
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .krathong-figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      background: #141f52;
+    }
+
+    /* 3D Banana Leaf Rim under image */
+    .krathong-leaf-base {
+      position: absolute;
+      bottom: 0;
+      width: 104px;
+      height: 26px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at 50% 35%, #5fd368 0%, #2a9d46 65%, #165e29 100%);
+      box-shadow: 0 5px 0 #0e3f1b, 0 10px 16px rgba(0, 0, 0, 0.65), inset 0 2px 3px rgba(255, 255, 255, 0.35);
+      z-index: 1;
+    }
+
+    /* Water reflection below each krathong */
+    .krathong-water-shadow {
+      width: 88px;
+      height: 14px;
+      margin-top: -2px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(255, 204, 77, 0.45) 0%, rgba(255, 150, 20, 0.15) 60%, transparent 80%);
+      filter: blur(2px);
+    }
+
+    /* Krathong Name Tag */
+    .krathong-name-tag {
+      margin-top: 4px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(27, 39, 92, 0.94) 0%, rgba(14, 21, 54, 0.96) 100%);
+      border: 1.5px solid var(--gold);
+      color: #fff8de;
+      font-family: var(--font-head);
+      font-size: 0.84rem;
+      font-weight: 500;
+      white-space: nowrap;
+      max-width: 150px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+    }
+
+    @keyframes driftAcross {
+      0% { left:-150px;top:var(--depth-start);rotate:-5deg; }
+      50% { left:calc(50% - 68px);top:var(--depth-mid);rotate:2deg; }
+      100% { left:calc(100% + 150px);top:var(--depth-end);rotate:-3deg; }
+    }
+
+    @keyframes bobWater {
+      0% { transform:translateY(-3px) rotate(-1.2deg); }
+      100% { transform:translateY(6px) rotate(1.4deg); }
+    }
+
+
+    /* Full-screen festival home and student submission view */
+    body { min-height:100svh; overflow:hidden; background:#080e24; }
+    .app-header { position:absolute; inset:0 0 auto; max-width:none; padding:22px clamp(20px,4vw,64px); }
+    .brand-subtitle { display:none; }
+    .brand-icon { width:42px;height:42px; }
+    .main-container { width:100%;height:100svh;max-width:none;padding:0;display:block; }
+    .scene-stage { width:100%;height:100%;min-height:100svh;aspect-ratio:16/9;border:0;border-radius:0;box-shadow:none; }
+    .scene-stage::after { content:"";position:absolute;inset:0;z-index:4;pointer-events:none;background:linear-gradient(90deg,rgba(5,10,30,.65),transparent 68%),linear-gradient(0deg,rgba(4,10,28,.32),transparent 50%); }
+    .sky-layer { inset:0 0 36%; }
+    .full-moon { top:14%;right:15%;width:clamp(90px,11vw,170px);height:clamp(90px,11vw,170px); }
+    .horizon-silhouette { height:20%;bottom:43%; }
+    .garland-lights { top:55%; }
+    .river-layer { top:57%; }
+    .river-empty-state { justify-content:flex-end;padding-bottom:4vh; }
+    .empty-card { background:rgba(13,22,56,.48);border:0;box-shadow:none; }
+    .home-copy { position:absolute;z-index:8;left:clamp(28px,9vw,150px);top:50%;transform:translateY(-43%);max-width:min(560px,60vw);pointer-events:none; }
+    .home-kicker { color:#ffdb83;font-size:clamp(.8rem,1.2vw,1rem);letter-spacing:.18em;font-weight:600;margin-bottom:12px; }
+    .home-title { font-family:var(--font-head);font-size:clamp(3rem,7.2vw,7.5rem);line-height:1.02;color:#fff4ce;text-shadow:0 8px 30px rgba(0,0,0,.5); }
+    .home-desc { margin-top:18px;color:#e0e6f5;font-size:clamp(1rem,1.6vw,1.35rem);max-width:470px; }
+    .home-actions { display:flex;gap:14px;margin-top:30px;pointer-events:auto; }
+    .home-cta,.home-link { border:0;border-radius:999px;padding:14px 26px;font:600 1rem var(--font-head);cursor:pointer; }
+    .home-cta { color:#321d00;background:linear-gradient(#ffe88b,#f7a91c);box-shadow:0 6px 0 #a95704,0 12px 28px #0005; }
+    .home-link { color:#fff4ce;background:rgba(255,255,255,.1);border:1px solid #fff6;backdrop-filter:blur(8px); }
+    .form-panel { display:none;position:fixed;z-index:20;inset:0;overflow:auto;border:0;border-radius:0;padding:100px 24px 40px;background:radial-gradient(ellipse at 75% 15%,#34407d 0,transparent 45%),linear-gradient(145deg,#10173c,#080d23); }
+    .form-panel.submission-open { display:block; }
+    .form-panel form,.form-panel>.panel-title,.form-panel>.panel-desc { max-width:560px;margin-left:auto;margin-right:auto; }
+    .form-panel .panel-title { font-size:clamp(1.5rem,3vw,2rem); }
+    .form-panel .panel-desc { margin-bottom:28px; }
+    .close-submit { position:absolute;top:26px;right:clamp(20px,4vw,64px);border:1px solid #fff5;background:#ffffff12;color:#fff;padding:10px 18px;border-radius:999px;font:500 1rem var(--font-head);cursor:pointer; }
+    .submission-note { max-width:560px;margin:20px auto;color:#b8c2e0;font-size:.9rem; }
+    .home-nav { margin-left:auto;display:flex;gap:10px;align-items:center; }
+    .home-nav button { border:1px solid #fff5;border-radius:999px;background:#ffffff12;color:#fff5d7;padding:9px 16px;font:500 .95rem var(--font-head);cursor:pointer;backdrop-filter:blur(8px); }
+    .home-nav .nav-submit { background:#ffcb51;color:#321d00;border-color:#ffdc85; }
+    .nav-admin { border:1px solid #fff4;border-radius:999px;color:#fff3ce;text-decoration:none;padding:9px 14px;font:500 .9rem var(--font-head); }
+    @media(max-width:700px) {
+      body { overflow:auto; }
+      .app-header { padding:14px 18px; }
+      .brand-title { font-size:1.1rem; }
+      .brand-icon { width:36px;height:36px; }
+      .home-nav button:not(.nav-submit) { display:none; }
+      .main-container { height:100svh; }
+      .scene-stage { min-height:100svh; }
+      .home-copy { left:24px;right:24px;max-width:none;top:43%; }
+      .home-title { font-size:clamp(3rem,14vw,5rem); }
+      .home-desc { max-width:340px; }
+      .home-actions { flex-wrap:wrap; }
+      .river-empty-state { padding-bottom:7vh; }
+    }
+    @media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important; } }
+
+
+
+    /* Cinematic projection and presentation controls */
+    .scene-stage {
+      background:linear-gradient(180deg,#14274d,#06152b);
+      animation:none;
+    }
+    .scene-backdrop { position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;pointer-events:none; }
+    .scene-stage::after { background:linear-gradient(90deg,rgba(3,9,25,.4),transparent 58%),linear-gradient(0deg,rgba(3,8,20,.18),transparent 52%); }
+    .sky-layer,.horizon-silhouette,.garland-lights { display:none; }
+    .river-layer { top:66%;background:transparent!important; }
+    .river-empty-state { display:none; }
+    .water-ripple { height:2px;background:linear-gradient(90deg,transparent,rgba(255,220,145,.52),transparent);filter:blur(.4px); }
+    .home-copy { top:48%; }
+    .presentation-mode .app-header,.presentation-mode .home-copy { opacity:0;visibility:hidden;transition:opacity .7s ease,visibility .7s; }
+    .presentation-mode .scene-stage { border-radius:0; }
+    .presentation-mode .main-container { padding:0; }
+    .presentation-mode .form-panel { display:none!important; }
+    .presentation-mode .floating-krathong { filter:drop-shadow(0 10px 14px rgba(0,0,0,.45)); }
+    .nav-present { border-color:#ffdf94!important;background:rgba(255,201,78,.92)!important;color:#2c1900!important; }
+    @media(max-width:700px) { .scene-backdrop { object-position:center; } }
+    @media(prefers-reduced-motion:reduce) { .scene-stage { animation:none; } }
+
+  </style>
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="brand">
+      <div class="brand-icon" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+          <path d="M16 4C16 4 19.5 8.5 19.5 11.5C19.5 13.433 17.933 15 16 15C14.067 15 12.5 13.433 12.5 11.5C12.5 8.5 16 4 16 4Z" fill="#FF6B00"/>
+          <path d="M16 7C16 7 18 9.8 18 11.5C18 12.6 17.1 13.5 16 13.5C14.9 13.5 14 12.6 14 11.5C14 9.8 16 7 16 7Z" fill="#FFF3A1"/>
+          <path d="M6 20C8 16 13 16 16 16C19 16 24 16 26 20C23 23 9 23 6 20Z" fill="#F77Fbe"/>
+          <path d="M4 22C8 20 24 20 28 22C26 26 6 26 4 22Z" fill="#2E9F4E"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="brand-title">ลอยกระทง เขาย้อย</h1>
+        <p class="brand-subtitle">วิทยาลัยการอาชีพเขาย้อย · จังหวัดเพชรบุรี</p>
+      </div>
+    </div>
+    <nav class="home-nav" aria-label="เมนูหลัก"><button type="button" data-open-info>ประเพณีลอยกระทง</button><button type="button" class="nav-submit" data-open-submit>ส่งกระทงของฉัน</button><button type="button" class="nav-present" data-presentation>⛶ เต็มจอฉาย</button><a class="nav-admin" href="/admin" target="_blank" rel="noopener">⚙ หลังบ้าน</a></nav>
+  </header>
+
+  <main class="main-container">
+    <!-- Left Column: Krathong Submission Form -->
+    <section class="form-panel" id="submission-panel" aria-labelledby="form-heading"><button class="close-submit" type="button" data-close-submit>← กลับหน้าหลัก</button>
+      <h2 id="form-heading" class="panel-title">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2c0 0 3 3.5 3 6a3 3 0 0 1-6 0c0-2.5 3-6 3-6z"/>
+          <path d="M4 17c2.5-3 13.5-3 16 0"/>
+          <path d="M2 20c4-2 16-2 20 0"/>
+        </svg>
+        ส่งกระทงของนักเรียน
+      </h2>
+      <p class="panel-desc">อัปโหลดภาพกระทงและตั้งชื่อกระทงให้สุภาพเพื่อปล่อยลอยในแม่น้ำ</p>
+
+      <form id="krathong-form" novalidate>
+        <!-- Image Upload -->
+        <div class="form-group">
+          <label class="form-label" for="krathong-image">ภาพกระทง</label>
+          <div class="upload-zone" id="upload-zone">
+            <input
+              type="file"
+              id="krathong-image"
+              class="file-input"
+              accept="image/*"
+              aria-describedby="form-error"
+            >
+            <div class="upload-placeholder" id="upload-placeholder">
+              <div class="upload-icon-3d" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="4"/>
+                  <circle cx="8.5" cy="8.5" r="1.5"/>
+                  <path d="M21 15l-5-5L5 21"/>
+                </svg>
+              </div>
+              <div class="upload-title">คลิกหรือลากไฟล์ภาพกระทงมาวางที่นี่</div>
+              <div class="upload-sub">รองรับไฟล์ภาพ PNG, JPG, WEBP</div>
+            </div>
+
+            <div class="upload-preview-wrap" id="upload-preview-wrap">
+              <div class="preview-img-box">
+                <img id="image-preview" src="" alt="ตัวอย่างภาพกระทง">
+              </div>
+              <span class="change-photo-hint">คลิกเพื่อเปลี่ยนภาพกระทง</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Krathong Name -->
+        <div class="form-group">
+          <label class="form-label" for="krathong-name">ตั้งชื่อกระทง</label>
+          <input
+            type="text"
+            id="krathong-name"
+            class="text-input"
+            placeholder="เช่น กระทงรักษ์สายน้ำ, กระทงใบตองของฉัน"
+            maxlength="40"
+            autocomplete="off"
+            aria-describedby="form-error"
+          >
+          <div id="form-error" class="validation-msg" role="alert" aria-live="polite">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            <span id="form-error-text"></span>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-launch">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 2L11 13"/>
+            <path d="M22 2l-7 20-4-9-9-4 20-7z"/>
+          </svg>
+          ส่งกระทงขึ้นลอย
+        </button>
+      </form>
+      <p class="submission-note">ส่งภาพผลงานกระทงของนักเรียน ตั้งชื่อให้สุภาพ แล้วกดส่งเพื่อชมกระทงลอยบนสายน้ำในหน้าหลัก</p>
+    </section>
+
+    <!-- Right Column: 3D Cartoon Thai Loy Krathong River Scene -->
+    <section class="scene-stage" aria-label="แม่น้ำลอยกระทง"><img class="scene-backdrop" src="/khaoyoi-loy-krathong.png" alt="" aria-hidden="true">
+      <div class="home-copy"><p class="home-kicker">อำเภอเขาย้อย · จังหวัดเพชรบุรี</p><h2 class="home-title">ลอยกระทง<br>เขาย้อย</h2><p class="home-desc">บรรยากาศคืนวันเพ็ญ ณ วิทยาลัยการอาชีพเขาย้อย ร่วมสืบสานประเพณีไทยและส่งกระทงของนักเรียนลงสู่สายน้ำ</p><div class="home-actions"><button class="home-cta" type="button" data-open-submit>🪷 ส่งกระทงของฉัน</button><button class="home-link" type="button" data-open-info>รู้จักประเพณี</button></div></div>
+      <!-- Sky with Full Moon, Stars, and Sky Lanterns -->
+      <div class="sky-layer" aria-hidden="true">
+        <div class="full-moon"></div>
+
+        <!-- Stars -->
+        <div class="star" style="width:4px;height:4px;top:14%;left:12%;animation-delay:0.2s;"></div>
+        <div class="star" style="width:5px;height:5px;top:24%;left:28%;animation-delay:1.1s;"></div>
+        <div class="star" style="width:3px;height:3px;top:10%;left:46%;animation-delay:0.7s;"></div>
+        <div class="star" style="width:5px;height:5px;top:18%;left:64%;animation-delay:1.8s;"></div>
+        <div class="star" style="width:4px;height:4px;top:32%;left:18%;animation-delay:2.3s;"></div>
+        <div class="star" style="width:3px;height:3px;top:29%;left:52%;animation-delay:0.4s;"></div>
+
+        <!-- 3D Cartoon Khom Loy (Sky Lanterns) -->
+        <div class="khom-loy" style="top:18%;left:20%;transform:scale(0.85);animation-delay:0s;"></div>
+        <div class="khom-loy" style="top:11%;left:38%;transform:scale(0.65);animation-delay:2.2s;"></div>
+        <div class="khom-loy" style="top:24%;left:58%;transform:scale(0.75);animation-delay:1.1s;"></div>
+      </div>
+
+      <!-- Traditional Thai Temple, Chedi & Sala Pavilion Silhouette -->
+      <svg class="horizon-silhouette" viewBox="0 0 900 130" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="templeGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1d2459"/>
+            <stop offset="100%" stop-color="#0a1230"/>
+          </linearGradient>
+          <linearGradient id="goldTrim" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#ffe074"/>
+            <stop offset="100%" stop-color="#d48406"/>
+          </linearGradient>
+        </defs>
+        <!-- Distant Hills -->
+        <path d="M0 130 L0 95 Q130 65 280 98 T580 88 T900 95 L900 130 Z" fill="#121842"/>
+        <!-- Thai Chedi Spire Left -->
+        <path d="M115 130 L115 88 L125 72 L130 42 L133 18 L136 42 L141 72 L151 88 L151 130 Z" fill="url(#templeGrad)" stroke="url(#goldTrim)" stroke-width="1.2"/>
+        <!-- Thai Sala Roof -->
+        <path d="M210 92 L255 62 L300 92 Z" fill="url(#templeGrad)" stroke="url(#goldTrim)" stroke-width="1.5"/>
+        <path d="M222 92 L222 122 M288 92 L288 122" stroke="#f3b63f" stroke-width="2.5"/>
+        <!-- Riverbank Base -->
+        <rect x="0" y="116" width="900" height="16" fill="#09132e"/>
+      </svg>
+
+      <!-- Festive Thai Garland Lights -->
+      <svg class="garland-lights" viewBox="0 0 900 32" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 4 Q112 26 225 4 Q337 26 450 4 Q562 26 675 4 Q787 26 900 4" fill="none" stroke="rgba(255,207,84,0.35)" stroke-width="1.5"/>
+        <circle cx="56" cy="14" r="4" fill="#ffcf54"/>
+        <circle cx="112" cy="19" r="4.5" fill="#ff7b39"/>
+        <circle cx="168" cy="14" r="4" fill="#ffcf54"/>
+        <circle cx="281" cy="14" r="4" fill="#ffcf54"/>
+        <circle cx="337" cy="19" r="4.5" fill="#ff7b39"/>
+        <circle cx="393" cy="14" r="4" fill="#ffcf54"/>
+        <circle cx="506" cy="14" r="4" fill="#ffcf54"/>
+        <circle cx="562" cy="19" r="4.5" fill="#ff7b39"/>
+        <circle cx="618" cy="14" r="4" fill="#ffcf54"/>
+        <circle cx="731" cy="14" r="4" fill="#ffcf54"/>
+        <circle cx="787" cy="19" r="4.5" fill="#ff7b39"/>
+        <circle cx="843" cy="14" r="4" fill="#ffcf54"/>
+      </svg>
+
+      <dialog id="festival-info" style="color:#fff4ce;background:#151e49;border:1px solid #ffcf5480;border-radius:20px;padding:28px;max-width:min(520px,90vw);box-shadow:0 20px 70px #000b"><button type="button" data-close-info style="float:right;background:none;border:0;color:#fff;font-size:1.4rem;cursor:pointer" aria-label="ปิด">×</button><p class="home-kicker">สืบสานประเพณีไทย</p><h2 style="font:600 1.8rem var(--font-head);margin:8px 0 12px">ลอยกระทง</h2><p>ประเพณีลอยกระทงจัดขึ้นในคืนวันเพ็ญเดือนสิบสอง เพื่อร่วมขอขมาและขอบคุณสายน้ำ นักเรียนสามารถส่งภาพกระทงที่สร้างสรรค์อย่างเป็นมิตรต่อสิ่งแวดล้อมมาร่วมลอยในสายน้ำนี้ได้</p></dialog>
+      <!-- River Water Surface -->
+      <div class="river-layer">
+        <div class="moon-reflection" aria-hidden="true"></div>
+        <div class="water-ripple" style="width:160px;top:18%;left:14%;animation-delay:0s;"></div>
+        <div class="water-ripple" style="width:220px;top:42%;left:48%;animation-delay:1.3s;"></div>
+        <div class="water-ripple" style="width:180px;top:68%;left:22%;animation-delay:2.4s;"></div>
+        <div class="water-ripple" style="width:140px;top:82%;left:66%;animation-delay:0.8s;"></div>
+
+        <!-- Empty State when no krathongs are floating yet -->
+        <div class="river-empty-state" id="river-empty-state">
+          <div class="empty-card">
+            <p class="empty-title">ยังไม่มีกระทงในสายน้ำ</p>
+            <p class="empty-sub">อัปโหลดภาพกระทงและตั้งชื่อกระทงทางด้านซ้าย เพื่อเริ่มลอยกระทงใบแรกของคุณ</p>
+          </div>
+        </div>
+
+        <!-- Active Floating Krathongs Container -->
+        <div class="krathong-lane" id="krathong-lane" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const form = document.getElementById('krathong-form');
+      const presentationButton = document.querySelector('[data-presentation]');
+      async function togglePresentation() {
+        if (!document.fullscreenElement) {
+          try { await document.documentElement.requestFullscreen(); } catch (error) { /* browser may block fullscreen; keep the page usable */ }
+        } else { await document.exitFullscreen(); }
+      }
+      presentationButton.addEventListener('click', togglePresentation);
+      document.addEventListener('fullscreenchange', () => document.body.classList.toggle('presentation-mode', Boolean(document.fullscreenElement)));
+      document.addEventListener('keydown', event => { if (event.key.toLowerCase() === 'f' && !event.repeat) togglePresentation(); });
+      const submissionPanel = document.getElementById('submission-panel');
+      document.querySelectorAll('[data-open-submit]').forEach(button => button.addEventListener('click', () => submissionPanel.classList.add('submission-open')));
+      document.querySelectorAll('[data-close-submit]').forEach(button => button.addEventListener('click', () => submissionPanel.classList.remove('submission-open')));
+      const festivalInfo = document.getElementById('festival-info');
+      document.querySelectorAll('[data-open-info]').forEach(button => button.addEventListener('click', () => festivalInfo.showModal()));
+      document.querySelector('[data-close-info]').addEventListener('click', () => festivalInfo.close());
+      const fileInput = document.getElementById('krathong-image');
+      const uploadZone = document.getElementById('upload-zone');
+      const uploadPlaceholder = document.getElementById('upload-placeholder');
+      const uploadPreviewWrap = document.getElementById('upload-preview-wrap');
+      const imagePreview = document.getElementById('image-preview');
+      const nameInput = document.getElementById('krathong-name');
+      const errorBox = document.getElementById('form-error');
+      const errorText = document.getElementById('form-error-text');
+      const riverEmptyState = document.getElementById('river-empty-state');
+      const krathongLane = document.getElementById('krathong-lane');
+
+      let currentImageDataUrl = '';
+
+      async function syncRiverSubmissions() {
+        try {
+          const response = await fetch('/api/submissions');
+          if (!response.ok) throw new Error('backend unavailable');
+          const items = await response.json();
+          const activeIds = new Set(items.map(item => item.id));
+          krathongLane.querySelectorAll('[data-submission-id]').forEach(node => {
+            if (!activeIds.has(node.dataset.submissionId)) node.remove();
+          });
+          const shownIds = new Set(Array.from(krathongLane.querySelectorAll('[data-submission-id]')).map(node => node.dataset.submissionId));
+          items.forEach(item => { if (!shownIds.has(item.id)) spawnFloatingKrathong(item.name, item.image, item.id); });
+          riverEmptyState.classList.toggle('hidden', items.length > 0);
+        } catch {
+          const note = document.querySelector('.empty-sub');
+          if (note) note.textContent = 'เปิดระบบผ่าน start-server.bat เพื่อส่งและจัดการกระทง';
+          riverEmptyState.classList.remove('hidden');
+        }
+      }
+      syncRiverSubmissions();
+      window.setInterval(syncRiverSubmissions, 12000);
+
+      // Comprehensive Thai & English profanity list for student safety check
+      const PROFANITY_LIST = [
+        // Thai profanity roots & common variants
+        'กู', 'มึง', 'เหี้ย', 'ห่า', 'สัส', 'สัด', 'ควย', 'หี', 'แตด', 'เย็ด',
+        'แม่ง', 'แม่ม', 'พ่อง', 'พ่อมึง', 'แม่มึง', 'อีดอก', 'ดอกทอง', 'ชาติหมา',
+        'สถุล', 'ระยำ', 'จัญไร', 'อัปรีย์', 'ตอแหล', 'เสือก', 'ควาย', 'อีโง่',
+        'ไอ้โง่', 'หน้าด้าน', 'สันดาน', 'กะหรี่', 'กระหรี่', 'ชิบหาย', 'ฉิบหาย',
+        'เชี่ย', 'เxี้ย', 'คxย', 'ส้นตีน', 'ตีน', 'อีสัตว์', 'ไอ้สัตว์', 'อีเวร', 'ไอ้เวร',
+        // English profanity roots
+        'fuck', 'shit', 'bitch', 'asshole', 'bastard', 'dick', 'pussy', 'cunt',
+        'whore', 'slut', 'motherfucker', 'cock', 'wtf', 'stfu', 'nigger', 'faggot'
+      ];
+
+      function normalizeText(text) {
+        return text
+          .toLowerCase()
+          // Remove zero-width characters, spaces, dots, dashes, symbols used to bypass filters
+          .replace(/[\s\u200B-\u200D\uFEFF._\-*+#@!~`'"/\\|(),:;?<>[\]{}^&$%=]+/g, '');
+      }
+
+      function containsProfanity(rawText) {
+        if (!rawText) return false;
+        const lowered = rawText.toLowerCase();
+        const compacted = normalizeText(rawText);
+
+        for (let i = 0; i < PROFANITY_LIST.length; i++) {
+          const badWord = PROFANITY_LIST[i];
+          if (lowered.includes(badWord) || compacted.includes(badWord)) {
+            return true;
+          }
+        }
+        return false;
+      }
+
+      function showError(message, highlightNameInput) {
+        errorText.textContent = message;
+        errorBox.classList.add('error');
+        if (highlightNameInput) {
+          nameInput.classList.add('input-error');
+        }
+      }
+
+      function clearError() {
+        errorText.textContent = '';
+        errorBox.classList.remove('error');
+        nameInput.classList.remove('input-error');
+      }
+
+      async function handleFileSelect(file) {
+        if (!file) return;
+        if (!file.type.startsWith('image/')) {
+          showError('กรุณาเลือกไฟล์รูปภาพเท่านั้น (เช่น PNG, JPG, WEBP)', false);
+          return;
+        }
+        clearError();
+        try {
+          const source = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+          });
+          const image = await new Promise((resolve, reject) => {
+            const img = new Image(); img.onload = () => resolve(img); img.onerror = reject; img.src = source;
+          });
+          const scale = Math.min(1, 1400 / Math.max(image.width, image.height));
+          const canvas = document.createElement('canvas');
+          canvas.width = Math.round(image.width * scale); canvas.height = Math.round(image.height * scale);
+          canvas.getContext('2d').drawImage(image, 0, 0, canvas.width, canvas.height);
+          currentImageDataUrl = canvas.toDataURL('image/jpeg', 0.82);
+          imagePreview.src = currentImageDataUrl;
+          uploadPlaceholder.classList.add('hidden');
+          uploadPreviewWrap.classList.add('active');
+        } catch {
+          showError('เปิดไฟล์ภาพนี้ไม่ได้ กรุณาเลือกภาพอื่น', false);
+        }
+      }
+
+      fileInput.addEventListener('change', function (e) {
+        const file = e.target.files && e.target.files[0];
+        handleFileSelect(file);
+      });
+
+      uploadZone.addEventListener('dragover', function (e) {
+        e.preventDefault();
+        uploadZone.classList.add('dragover');
+      });
+
+      uploadZone.addEventListener('dragleave', function () {
+        uploadZone.classList.remove('dragover');
+      });
+
+      uploadZone.addEventListener('drop', function (e) {
+        e.preventDefault();
+        uploadZone.classList.remove('dragover');
+        const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+        if (file) {
+          handleFileSelect(file);
+        }
+      });
+
+      // Live profanity check while typing the krathong name
+      nameInput.addEventListener('input', function () {
+        const val = nameInput.value.trim();
+        if (val && containsProfanity(val)) {
+          showError('ตรวจพบคำไม่สุภาพ กรุณาตั้งชื่อกระทงด้วยถ้อยคำที่สุภาพก่อนส่ง', true);
+        } else {
+          clearError();
+        }
+      });
+
+      function spawnFloatingKrathong(name, imgSrc, submissionId) {
+        riverEmptyState.classList.add('hidden');
+
+        const item = document.createElement('div');
+        item.className = 'floating-krathong';
+        if (submissionId) item.dataset.submissionId = submissionId;
+
+        // Water lane is clipped by the river layer. Leave enough room for the full krathong at the near edge.
+        const riverHeight = krathongLane.clientHeight || Math.round(window.innerHeight * 0.34);
+        const topInset = Math.min(14, (18 / riverHeight) * 100);
+        const maxDepth = Math.max(topInset, Math.min(62, ((riverHeight - 170) / riverHeight) * 100));
+        const laneRange = Math.max(0, maxDepth - topInset);
+        const diagonalSpan = Math.min(18, laneRange * 0.48);
+        const direction = Math.random() < 0.5 ? 'normal' : 'reverse';
+        let startDepth = topInset;
+        let endDepth = topInset;
+        if (laneRange > diagonalSpan + 1) {
+          if (direction === 'normal') {
+            startDepth = topInset + Math.random() * (laneRange - diagonalSpan);
+            endDepth = startDepth + diagonalSpan;
+          } else {
+            startDepth = topInset + diagonalSpan + Math.random() * (laneRange - diagonalSpan);
+            endDepth = startDepth - diagonalSpan;
+          }
+        }
+        const middleDepth = (startDepth + endDepth) / 2;
+        const durationSec = 48 + Math.floor(Math.random() * 28);
+        const scaleAt = depth => (0.42 + (depth / Math.max(1, maxDepth)) * 0.74).toFixed(2);
+        const scaleStart = scaleAt(startDepth);
+        const scaleEnd = scaleAt(endDepth);
+        const opacityAt = scale => (0.55 + ((Number(scale) - 0.42) / 0.74) * 0.45).toFixed(2);
+
+        item.style.setProperty('--depth-start', startDepth.toFixed(2) + '%');
+        item.style.setProperty('--depth-mid', middleDepth.toFixed(2) + '%');
+        item.style.setProperty('--depth-end', endDepth.toFixed(2) + '%');
+        item.style.setProperty('--scale-start', scaleStart);
+        item.style.setProperty('--scale-end', scaleEnd);
+        item.style.setProperty('--opacity-start', opacityAt(scaleStart));
+        item.style.setProperty('--opacity-end', opacityAt(scaleEnd));
+        item.style.animationDuration = durationSec + 's';
+        item.style.animationDirection = direction;
+        item.style.zIndex = String(10 + Math.round(middleDepth));
+
+        const content = document.createElement('div');
+        content.className = 'krathong-content';
+        content.style.animationDuration = '4.6s, ' + durationSec + 's, ' + durationSec + 's';
+        content.style.animationDirection = 'alternate, ' + direction + ', ' + direction;
+
+        const visual = document.createElement('div');
+        visual.className = 'krathong-visual';
+        const body3d = document.createElement('div');
+        body3d.className = 'krathong-3d-body';
+
+        const candleGlow = document.createElement('div');
+        candleGlow.className = 'candle-glow';
+
+        const figure = document.createElement('div');
+        figure.className = 'krathong-figure';
+        const img = document.createElement('img');
+        img.src = imgSrc;
+        img.alt = name;
+        figure.appendChild(img);
+
+        const leafBase = document.createElement('div');
+        leafBase.className = 'krathong-leaf-base';
+        body3d.append(candleGlow, figure, leafBase);
+
+        const waterShadow = document.createElement('div');
+        waterShadow.className = 'krathong-water-shadow';
+        visual.append(body3d, waterShadow);
+
+        const nameTag = document.createElement('div');
+        nameTag.className = 'krathong-name-tag';
+        nameTag.textContent = name;
+        nameTag.title = name;
+
+        content.append(visual, nameTag);
+        item.appendChild(content);
+        krathongLane.appendChild(item);
+      }
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        clearError();
+
+        const trimmedName = nameInput.value.trim();
+
+        if (!currentImageDataUrl) {
+          showError('กรุณาอัปโหลดภาพกระทงก่อนส่งขึ้นลอย', false);
+          fileInput.focus();
+          return;
+        }
+
+        if (!trimmedName) {
+          showError('กรุณาตั้งชื่อกระทงของคุณ', true);
+          nameInput.focus();
+          return;
+        }
+
+        if (containsProfanity(trimmedName)) {
+          showError('ไม่สามารถส่งกระทงได้ เนื่องจากชื่อกระทงมีคำไม่สุภาพ กรุณาแก้ไขชื่อใหม่', true);
+          nameInput.focus();
+          return;
+        }
+
+        let saved;
+        try {
+          const response = await fetch('/api/submissions', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: trimmedName, image: currentImageDataUrl })
+          });
+          saved = await response.json();
+          if (!response.ok) throw new Error(saved.error || 'ส่งกระทงไม่สำเร็จ');
+        } catch (error) {
+          showError(error.message || 'เชื่อมต่อระบบรับกระทงไม่ได้ กรุณาลองอีกครั้ง', false);
+          return;
+        }
+
+        spawnFloatingKrathong(trimmedName, `/api/image/${saved.id}`, saved.id);
+
+        // Reset form for the next student
+        form.reset();
+        currentImageDataUrl = '';
+        imagePreview.src = '';
+        uploadPreviewWrap.classList.remove('active');
+        uploadPlaceholder.classList.remove('hidden');
+      });
+    })();
+  </script>
+</body>
+</html>
+
+
+
